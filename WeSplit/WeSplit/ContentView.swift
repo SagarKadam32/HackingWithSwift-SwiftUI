@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var tapCount = 0
+    @State private var name = ""
     var body: some View {
         NavigationView{
             Form {
@@ -29,9 +30,17 @@ struct ContentView: View {
                     Text("Hello, world 11")
                 }
                 
-                Button("Tap Count = \(tapCount)"){
-                    tapCount += 1
+                Section {
+                    Button("Tap Count = \(tapCount)"){
+                        tapCount += 1
+                    }
                 }
+
+                Section {
+                    TextField("Enter Your Name", text: $name)
+                    Text("You Name is = \(name)")
+                }
+ 
             }
             .navigationTitle("Swift UI")
             .navigationBarTitleDisplayMode(.inline)
