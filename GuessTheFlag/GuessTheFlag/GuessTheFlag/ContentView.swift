@@ -10,10 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         ZStack{
+            /*
             VStack(spacing:0){
                 Color.red
                 Color.blue
-            }
+            }*/
+            AngularGradient(colors: [.red, .blue, .green, .yellow,.orange,.red], center: .center)
             VStack{
                 HStack {
                     Text("1")
@@ -30,7 +32,7 @@ struct ContentView: View {
                     Text("8")
                     Text("9")
                 }
-            }.foregroundStyle(.secondary)
+            }.foregroundColor(.black)
                 .padding(50)
                 .background(.ultraThinMaterial)
             
