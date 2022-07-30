@@ -27,6 +27,13 @@ struct ContentView: View {
         
         return amountPerPerson
     }
+    
+    func calculateGrandTotal() {
+        let tipSelection = Double(tipPercentage)
+
+        let tipValue = checkAmount / 100 * tipSelection
+        totalAmount = checkAmount + tipValue
+    }
     var body: some View {
         NavigationView {
             Form {
@@ -44,11 +51,10 @@ struct ContentView: View {
                 
                 Section {
                     Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
+                        ForEach(0..<101) {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
                 } header: {
                     Text("How much tip do you want to leave?")
                 }
@@ -71,10 +77,7 @@ struct ContentView: View {
                     Spacer()
                     Button("Done") {
                         amountIsFocused = false
-                        let tipSelection = Double(tipPercentage)
-
-                        let tipValue = checkAmount / 100 * tipSelection
-                        totalAmount = checkAmount + tipValue
+                        calculateGrandTotal()
                     }
                 }
             }
