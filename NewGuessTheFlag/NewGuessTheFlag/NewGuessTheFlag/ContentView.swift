@@ -10,6 +10,9 @@ import SwiftUI
 struct ContentView: View {
     @State private var shwoingScore = false
     @State private var scoreTitle = ""
+    @State private var currentScore = 0
+    @State private var isWrongAnswer = false
+    @State private var currentSelectedIndex = 0
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia","Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -24,6 +27,7 @@ struct ContentView: View {
                 .ignoresSafeArea()
             
             VStack{
+                VStack {
                     Spacer()
                     Text("Guess the Flag")
                     .font(.largeTitle.weight(.bold))
@@ -40,14 +44,16 @@ struct ContentView: View {
                         
                         ForEach(0..<3) { number in
                             Button {
-                                flagTappged(number)
+                                currentSelectedIndex = number
+                                isWrongAnswer = flagTappged(currentSelectedIndex)
+                                
                             } label: {
                                     Image(countries[number])
                                     .renderingMode(.original)
                                     .clipShape(Rectangle())
                                     .shadow(color: .black, radius: 5)
-                                }
                             }
+                        }
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 20)
@@ -57,27 +63,38 @@ struct ContentView: View {
                     Spacer()
                     Spacer()
                 
-                    Text("Score: ???")
+                    Text("Score: \(currentScore)")
                     .foregroundColor(.white)
                     .font(.title.bold())
                 
                     Spacer()
+                }
+                .alert("Incorrect Answer!!!", isPresented: $isWrongAnswer) {
+                    Button("Re-Try ?", action: askQuestion)
+                } message: {
+                    Text("This is flag of \(countries[currentSelectedIndex])")
+                }
             }.padding()
-            }
+        }
         .alert(scoreTitle, isPresented: $shwoingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is ???")
+            Text("Your score is \(currentScore)")
         }
         }
     
-    func flagTappged(_ number: Int) {
+    func flagTappged(_ number: Int) -> Bool {
+        var isWrongAnswer = false
         if number == correctAnswer {
             scoreTitle = "Correct"
+            currentScore += 1
+            shwoingScore = true
         }else {
             scoreTitle = "Wrong"
-        }
-        shwoingScore = true
+            currentScore -= 1
+            isWrongAnswer = true
+         }
+        return isWrongAnswer
     }
     
     func askQuestion() {
