@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showingAlert = false
     var body: some View {
         ZStack{
             /*
@@ -59,6 +60,16 @@ struct ContentView: View {
                         print("Edit button was tapped")
                     } label : {
                         Label("Edit", systemImage: "pencil")
+                    }
+                    
+                    Button("Show Alert"){
+                        showingAlert = true
+                    }
+                    .alert("Important Message", isPresented: $showingAlert) {
+                        Button("Delete", role: .destructive){}
+                        Button("Cancel", role: .cancel) {}
+                    }message: {
+                        Text("Please read this")
                     }
                     
 
