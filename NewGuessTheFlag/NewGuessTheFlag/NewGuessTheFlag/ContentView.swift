@@ -81,7 +81,7 @@ struct ContentView: View {
                 } message: {
                     Text("Your score is = \(currentScore)")
                 }
-            .alert(scoreTitle, isPresented: $shouldRestartGame) {
+            .alert("Maximum Game Limit Reached !!!", isPresented: $shouldRestartGame) {
                         Button("Restart Game", action: resetGame)
                     } message: {
                         Text("Your have reached maximum limit of 8 Questions & your score is = \(currentScore)")
