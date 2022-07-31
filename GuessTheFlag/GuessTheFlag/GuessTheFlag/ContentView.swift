@@ -15,8 +15,9 @@ struct ContentView: View {
                 Color.red
                 Color.blue
             }*/
-            AngularGradient(colors: [.red, .blue, .green, .yellow,.orange,.red], center: .center)
+           // AngularGradient(colors: [.red, .blue, .green, .yellow,.orange,.red], center: .center)
             VStack{
+                /*
                 HStack {
                     Text("1")
                     Text("2")
@@ -32,9 +33,40 @@ struct ContentView: View {
                     Text("8")
                     Text("9")
                 }
-            }.foregroundColor(.black)
-                .padding(50)
-                .background(.ultraThinMaterial)
+                 */
+                
+                VStack(spacing : 20) {
+                    Button("Button 1"){}
+                        .buttonStyle(.bordered)
+                    Button("Button 2", role: .destructive){}
+                        .buttonStyle(.bordered)
+                    Button("Button 3"){}
+                        .buttonStyle(.borderedProminent)
+                    Button("Button 4", role: .destructive){}
+                        .buttonStyle(.borderedProminent)
+                        .tint(.mint)
+                    
+                    Button {
+                        print("Button was Tapped")
+                    } label : {
+                        Text("Tap Me")
+                            .padding()
+                            .foregroundColor(.white)
+                            .background(.red)
+                    }
+                    
+                    Button {
+                        print("Edit button was tapped")
+                    } label : {
+                        Label("Edit", systemImage: "pencil")
+                    }
+                    
+
+                }
+            }
+            //.foregroundColor(.none)
+               // .padding(50)
+            .background(.clear)
             
         }.ignoresSafeArea()
         
