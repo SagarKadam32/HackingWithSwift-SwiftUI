@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var showRedContent = false
     var body: some View {
         VStack(spacing: 10) {
             Button("Tap Me") {
@@ -32,6 +33,10 @@ struct ContentView: View {
                 Text("1")
                 Text("2")
             }
+            
+            Button("Show Color Change") {
+                showRedContent.toggle()
+            }.foregroundColor(showRedContent ? .red : .blue)
             
         }
 
