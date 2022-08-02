@@ -28,7 +28,14 @@ struct ContentView: View {
                 .padding()
                 .background(.yellow)
             
+            VStack{
+                Text("1")
+                Text("2")
+            }
+            
         }
+
+
 
         
         
