@@ -30,9 +30,14 @@ struct ContentView: View {
                 .background(.yellow)
             
             VStack{
-                Text("1")
-                Text("2")
-            }
+                Text("Mumbai")
+                    .font(.largeTitle)
+                   // .blur(radius: 50)
+                Text("Pune")
+                Text("Delhi")
+                Text("Cheenai")
+            }.font(.title)
+            // .blur(radius: 5)
             
             Button("Show Color Change") {
                 showRedContent.toggle()
