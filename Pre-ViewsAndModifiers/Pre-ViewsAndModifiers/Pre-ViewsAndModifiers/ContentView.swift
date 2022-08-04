@@ -61,6 +61,26 @@ struct ContentView: View {
             }
             
             myOwnView
+            
+            VStack{
+            Text("First")
+                    .frame(width: 200)
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.blue)
+                    .clipShape(Rectangle())
+                
+                
+            Text("Second")
+                    .frame(width: 200)
+                    .font(.largeTitle)
+                    .padding()
+                    .foregroundColor(.white)
+                    .background(.blue)
+                    .clipShape(Rectangle())
+                
+            }
         }
 
 
