@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct RectangleView: View {
+    var text: String
+    var body: some View {
+        Text(text)
+            .padding()
+            .background(.red)
+            .padding()
+            .background(.blue)
+            .padding()
+            .background(.green)
+            .padding()
+            .background(.yellow)
+    }
+}
 struct ContentView: View {
     @State private var showRedContent = false
     
@@ -20,73 +34,57 @@ struct ContentView: View {
         }
     }
     var body: some View {
-        VStack(spacing: 10) {
-            Button("Tap Me") {
-                print(type(of: self.body))
-            }
-            .background(.red)
-            .foregroundColor(.white)
-            .frame(width: 200, height: 100)
-            .background(.blue)
-            
-            Text("Color me")
-                .padding()
+        ScrollView {
+            VStack(spacing: 5) {
+                Button("Tap Me") {
+                    print(type(of: self.body))
+                }
                 .background(.red)
-                .padding()
+                .foregroundColor(.white)
+                .frame(width: 200, height: 100)
                 .background(.blue)
-                .padding()
-                .background(.green)
-                .padding()
-                .background(.yellow)
-            
-            VStack{
-                Text("Mumbai")
-                    .font(.largeTitle)
-                   // .blur(radius: 50)
-                Text("Pune")
-                Text("Delhi")
-                Text("Cheenai")
-            }.font(.title)
-            // .blur(radius: 5)
-            
-            Button("Show Color Change") {
-                showRedContent.toggle()
-            }.foregroundColor(showRedContent ? .red : .blue)
-            
-            VStack{
-                motto1
-                    .font(.largeTitle)
-                motto2
-                    .font(.title)
-            }
-            
-            myOwnView
-            
-            VStack{
-            Text("First")
-                    .frame(width: 200)
-                    .font(.largeTitle)
+                
+                Text("Color me")
                     .padding()
-                    .foregroundColor(.white)
-                    .background(.blue)
-                    .clipShape(Rectangle())
-                
-                
-            Text("Second")
-                    .frame(width: 200)
-                    .font(.largeTitle)
+                    .background(.red)
                     .padding()
-                    .foregroundColor(.white)
                     .background(.blue)
-                    .clipShape(Rectangle())
+                    .padding()
+                    .background(.green)
+                    .padding()
+                    .background(.yellow)
                 
+                VStack{
+                    Text("Mumbai")
+                        .font(.largeTitle)
+                       // .blur(radius: 50)
+                    Text("Pune")
+                    Text("Delhi")
+                    Text("Cheenai")
+                }.font(.title)
+                // .blur(radius: 5)
+                
+                Button("Show Color Change") {
+                    showRedContent.toggle()
+                }.foregroundColor(showRedContent ? .red : .blue)
+                
+                VStack{
+                    motto1
+                        .font(.largeTitle)
+                    motto2
+                        .font(.title)
+                }
+                
+                myOwnView
+                
+                VStack{
+                    RectangleView(text: "Me First")
+                        .foregroundColor(.white)
+                    RectangleView(text: "Me Second")
+                        .foregroundColor(.yellow)
+                 }
             }
-        }
-
-
-
-        
-        
+        }.padding()
     }
 }
 
