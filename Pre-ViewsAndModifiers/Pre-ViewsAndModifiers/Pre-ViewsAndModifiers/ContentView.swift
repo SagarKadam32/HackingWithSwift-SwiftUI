@@ -7,6 +7,44 @@
 
 import SwiftUI
 
+struct WaterMark: ViewModifier {
+    var text: String
+    
+    func body(content: Content) -> some View {
+        ZStack(alignment: .bottomTrailing) {
+            content
+            Text(text)
+                .font(.caption)
+                .foregroundColor(.white)
+                .padding(5)
+                .background(.black)
+        }
+    }
+}
+
+extension View {
+    func waterMarked(with text: String) -> some View {
+        modifier(WaterMark(text: text))
+    }
+}
+
+struct Title: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.white)
+            .padding()
+            .background(.blue)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
+extension View {
+    func titleStyle() -> some View {
+        modifier(Title())
+    }
+}
+
 struct RectangleView: View {
     var text: String
     var body: some View {
@@ -82,6 +120,22 @@ struct ContentView: View {
                         .foregroundColor(.white)
                     RectangleView(text: "Me Second")
                         .foregroundColor(.yellow)
+                    
+                    Text("Hello World with ViewModifer")
+                        .modifier(Title())
+                    
+                    Text("Hello World with ViewModifer - titleStyle")
+                        .titleStyle()
+                    
+                    Color.blue
+                        .frame(width: 300, height: 200)
+                        .waterMarked(with: "Hacking with Swift")
+                    
+                    Text("Text padded by 10 points on each edge.")
+                           .padding(10)
+                           .border(.gray)
+                       Text("Unpadded text for comparison.")
+                           .border(.yellow)
                  }
             }
         }.padding()
