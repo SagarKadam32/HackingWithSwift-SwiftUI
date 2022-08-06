@@ -9,7 +9,7 @@ import CoreML
 import SwiftUI
 
 struct ContentView: View {
-    @State private var wakeUp = Date.now
+    @State private var wakeUp = defaultWakeTime
     @State private var sleepAmount = 8.0
     @State private var coffeeAmount = 1
     
@@ -17,25 +17,32 @@ struct ContentView: View {
     @State private var alertMessage = ""
     @State private var showingAlert = false
     
+    static var defaultWakeTime : Date {
+        var components = DateComponents()
+        components.hour = 7
+        components.minute = 0
+        return Calendar.current.date(from: components) ?? Date.now
+    }
+    
     var body: some View {
         
         NavigationView {
-            VStack {
-                    HStack {
+            Form {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("When do you want to wake up?")
                             .font(.headline)
                         DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
                             .labelsHidden()
                     }
                     
-                    HStack(alignment: .center) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("Desired amount of sleep")
                             .font(.headline)
                         
                         Stepper("\(sleepAmount.formatted()) Hours", value: $sleepAmount, in: 4...12, step: 0.25)
                     }
                     
-                    HStack(alignment: .center){
+                VStack(alignment: .leading, spacing: 5){
                         Text("Daily coffee intake")
                             .font(.headline)
                         
