@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+
+struct LargeTitle : ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.largeTitle)
+            .foregroundColor(.blue)
+    }
+}
+
+extension View {
+    func largeTitleStyle() -> some View{
+        modifier(LargeTitle())
+    }
+}
+
 struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int
@@ -163,6 +178,10 @@ struct ContentView: View {
                             Text("R\(row) C\(col)")
                       //  }
                     }
+                    
+                    
+                   Text("This is large Text Challenge-3")
+                        .largeTitleStyle()
                  }
             }
         }.padding()
