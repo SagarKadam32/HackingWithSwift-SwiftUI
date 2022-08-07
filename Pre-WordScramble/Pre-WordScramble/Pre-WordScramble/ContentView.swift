@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     let people = ["Amar", "Akbar", "Anthony"]
+    let word = "swift"
     
     var body: some View {
             VStack(spacing: 0){
