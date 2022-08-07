@@ -28,25 +28,31 @@ struct ContentView: View {
         
         NavigationView {
             Form {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("When do you want to wake up?")
                             .font(.headline)
                         DatePicker("Please enter a time", selection: $wakeUp, displayedComponents: .hourAndMinute)
                             .labelsHidden()
                     }
                     
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .leading, spacing: 5) {
                         Text("Desired amount of sleep")
                             .font(.headline)
                         
                         Stepper("\(sleepAmount.formatted()) Hours", value: $sleepAmount, in: 4...12, step: 0.25)
                     }
                     
-                VStack(alignment: .leading, spacing: 0){
+                VStack(alignment: .leading, spacing: 5){
                         Text("Daily coffee intake")
                             .font(.headline)
-                        
-                        Stepper(coffeeAmount == 1 ? "1 cup": "\(coffeeAmount) cups",value: $coffeeAmount, in: 1...20)
+                        /*
+                        Stepper(coffeeAmount == 1 ? "1 cup": "\(coffeeAmount) cups",value: $coffeeAmount, in: 1...20) */
+                    
+                        Picker("Number of Cups", selection: $coffeeAmount) {
+                            ForEach(1..<21){
+                                Text("\($0)")
+                            }
+                        }
                     }
                 }
                 .padding()
