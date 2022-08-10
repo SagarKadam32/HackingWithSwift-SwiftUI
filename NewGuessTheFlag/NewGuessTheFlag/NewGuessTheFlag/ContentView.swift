@@ -7,6 +7,32 @@
 
 import SwiftUI
 
+/*
+struct ButtonView : View {
+    var buttonIndex : Int
+    var animationAmount : Double
+    var countries : [String]
+    
+    var body: some View {
+        Button {
+            withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+                updateAmount(animationAmount: 360)
+            }
+            isWrongAnswer = flagTappged(buttonIndex)
+            
+        } label: {
+            FlagImageView(flagName: countries[buttonIndex])
+        }
+        .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+    }
+    
+    mutating func updateAmount(animationAmount : Double) -> Double {
+        animationAmount += 360
+
+        
+    }
+}*/
+
 struct FlagImageView : View {
     var flagName : String
     var body: some View {
@@ -25,6 +51,10 @@ struct ContentView: View {
     @State private var currentSelectedIndex = 0
     @State private var shouldRestartGame = false
     @State private var numberOfQuestionsAksed = 0
+    @State private var animationAmountButton1 = 1.0
+    @State private var animationAmountButton2 = 1.0
+    @State private var animationAmountButton3 = 1.0
+
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia","Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
@@ -52,9 +82,13 @@ struct ContentView: View {
                                     .font(.largeTitle.weight(.semibold))
                             }
                             
+                            /*
                             ForEach(0..<3) { number in
                                 Button {
                                     currentSelectedIndex = number
+                                    withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+                                        animationAmount += 360
+                                    }
                                     isWrongAnswer = flagTappged(currentSelectedIndex)
                                     
                                 } label: {
@@ -66,6 +100,48 @@ struct ContentView: View {
                                     FlagImageView(flagName: countries[number])
                                 }
                             }
+                            .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+                             */
+                            
+                            Button {
+                                currentSelectedIndex = 0
+                                withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+                                    animationAmountButton1 += 360
+                                }
+                                isWrongAnswer = flagTappged(currentSelectedIndex)
+                                
+                            } label: {
+                                FlagImageView(flagName: countries[0])
+                            }
+                            .rotation3DEffect(.degrees(animationAmountButton1), axis: (x: 0, y: 1, z: 0))
+                            
+                            
+                            Button {
+                                currentSelectedIndex = 1
+                                withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+                                    animationAmountButton2 += 360
+                                }
+                                isWrongAnswer = flagTappged(currentSelectedIndex)
+                                
+                            } label: {
+                                FlagImageView(flagName: countries[1])
+                            }
+                            .rotation3DEffect(.degrees(animationAmountButton2), axis: (x: 0, y: 1, z: 0))
+                            
+                            
+                            Button {
+                                currentSelectedIndex = 2
+                                withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
+                                    animationAmountButton3 += 360
+                                }
+                                isWrongAnswer = flagTappged(currentSelectedIndex)
+                                
+                            } label: {
+                                FlagImageView(flagName: countries[2])
+                            }
+                            .rotation3DEffect(.degrees(animationAmountButton3), axis: (x: 0, y: 1, z: 0))
+
+                            
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 20)
