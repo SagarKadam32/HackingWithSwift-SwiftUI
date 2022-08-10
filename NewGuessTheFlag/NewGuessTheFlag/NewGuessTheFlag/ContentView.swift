@@ -54,6 +54,12 @@ struct ContentView: View {
     @State private var animationAmountButton1 = 1.0
     @State private var animationAmountButton2 = 1.0
     @State private var animationAmountButton3 = 1.0
+    @State private var isButton1Selected = false
+    @State private var isButton2Selected = false
+    @State private var isButton3Selected = false
+
+    @State private var animationAmounts = [1.0, 1.0, 1.0]
+    
 
     
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia","Spain", "UK", "US"].shuffled()
@@ -87,24 +93,20 @@ struct ContentView: View {
                                 Button {
                                     currentSelectedIndex = number
                                     withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
-                                        animationAmount += 360
+                                        animationAmounts[currentSelectedIndex] += 360
                                     }
                                     isWrongAnswer = flagTappged(currentSelectedIndex)
                                     
                                 } label: {
-                                        /*
-                                        Image(countries[number])
-                                        .renderingMode(.original)
-                                        .clipShape(Rectangle())
-                                        .shadow(color: .black, radius: 5) */
                                     FlagImageView(flagName: countries[number])
                                 }
                             }
-                            .rotation3DEffect(.degrees(animationAmount), axis: (x: 0, y: 1, z: 0))
+                            .rotation3DEffect(.degrees(animationAmounts[currentSelectedIndex]), axis: (x: 0, y: 1, z: 0))
                              */
                             
                             Button {
                                 currentSelectedIndex = 0
+                                isButton1Selected = true
                                 withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
                                     animationAmountButton1 += 360
                                 }
@@ -113,11 +115,17 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[0])
                             }
+                            .overlay(
+                                Rectangle()
+                                    .background(.gray)
+                                    .opacity(isButton1Selected ? 0 : 0.50)
+                            )
                             .rotation3DEffect(.degrees(animationAmountButton1), axis: (x: 0, y: 1, z: 0))
                             
                             
                             Button {
                                 currentSelectedIndex = 1
+                                isButton2Selected = true
                                 withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
                                     animationAmountButton2 += 360
                                 }
@@ -126,11 +134,17 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[1])
                             }
+                            .overlay(
+                                Rectangle()
+                                    .background(.gray)
+                                    .opacity(isButton2Selected ? 0 : 0.50)
+                            )
                             .rotation3DEffect(.degrees(animationAmountButton2), axis: (x: 0, y: 1, z: 0))
                             
                             
                             Button {
                                 currentSelectedIndex = 2
+                                isButton3Selected = true
                                 withAnimation(.interpolatingSpring(stiffness: 5, damping: 1)) {
                                     animationAmountButton3 += 360
                                 }
@@ -139,8 +153,12 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[2])
                             }
+                            .overlay(
+                                Rectangle()
+                                    .background(.gray)
+                                    .opacity(isButton3Selected ? 0 : 0.50)
+                            )
                             .rotation3DEffect(.degrees(animationAmountButton3), axis: (x: 0, y: 1, z: 0))
-
                             
                         }
                         .frame(maxWidth: .infinity)
@@ -197,6 +215,9 @@ struct ContentView: View {
     
     func askQuestion() {
         countries.shuffle()
+        isButton1Selected = false
+        isButton2Selected = false
+        isButton3Selected = false
         correctAnswer = Int.random(in: 0...2)
     }
     
