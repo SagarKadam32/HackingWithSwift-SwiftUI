@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var animationAmount = 1.0
     @State private var enabled = false
     @State private var dragAmount = CGSize.zero
+    @State private var isShowingRed = false
     
     
     var body: some View {
@@ -117,6 +118,7 @@ struct ContentView: View {
               )
          */
         
+        /*
         HStack(spacing: 0) {
             ForEach(0..<letters.count, id: \.self) { num in
                 Text(String(letters[num]))
@@ -134,7 +136,27 @@ struct ContentView: View {
                     dragAmount = .zero
                     enabled.toggle()
                 }
-        )
+        ) */
+        
+        VStack {
+            
+            Button("Tap Me") {
+                withAnimation{
+                    isShowingRed.toggle()
+                }
+            }
+            
+            if isShowingRed {
+                Rectangle()
+                    .fill(.red)
+                    .frame(width: 200, height: 200)
+             //       .transition(.scale)
+                    .transition(.asymmetric(insertion: .scale, removal: .opacity))
+
+            }
+        }
+        
+        
     }
 }
 
