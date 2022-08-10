@@ -115,12 +115,13 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[0])
                             }
+                            .animation(.easeOut, value: isButton1Selected)
                             .overlay(
                                 Rectangle()
                                     .background(.gray)
                                     .opacity(isButton1Selected ? 0 : 0.50)
                             )
-                            .rotation3DEffect(.degrees(animationAmountButton1), axis: (x: 0, y: 1, z: 0))
+                           // .rotation3DEffect(.degrees(animationAmountButton1), axis: (x: 0, y: 1, z: 0))
                             
                             
                             Button {
@@ -134,12 +135,13 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[1])
                             }
+                            .animation(.easeOut, value: isButton2Selected)
                             .overlay(
                                 Rectangle()
                                     .background(.gray)
                                     .opacity(isButton2Selected ? 0 : 0.50)
                             )
-                            .rotation3DEffect(.degrees(animationAmountButton2), axis: (x: 0, y: 1, z: 0))
+                           // .rotation3DEffect(.degrees(animationAmountButton2), axis: (x: 0, y: 1, z: 0))
                             
                             
                             Button {
@@ -153,12 +155,13 @@ struct ContentView: View {
                             } label: {
                                 FlagImageView(flagName: countries[2])
                             }
+                            .animation(.easeOut, value: isButton3Selected)
                             .overlay(
                                 Rectangle()
                                     .background(.gray)
                                     .opacity(isButton3Selected ? 0 : 0.50)
                             )
-                            .rotation3DEffect(.degrees(animationAmountButton3), axis: (x: 0, y: 1, z: 0))
+                          //  .rotation3DEffect(.degrees(animationAmountButton3), axis: (x: 0, y: 1, z: 0))
                             
                         }
                         .frame(maxWidth: .infinity)
