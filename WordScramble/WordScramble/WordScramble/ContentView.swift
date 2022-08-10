@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var errrorMessage = ""
     @State private var showingError = false
     
+    @State private var currentScore = 0
+    
     var body: some View {
         NavigationView {
             List {
@@ -31,6 +33,10 @@ struct ContentView: View {
                             Text(word)
                             }
                     }
+                }
+                
+                Section("Your Score") {
+                    Text("Score : \(currentScore)")
                 }
                 
             }
@@ -79,6 +85,7 @@ struct ContentView: View {
         
         withAnimation {
             usedWords.insert(answer, at: 0)
+            calculateScore(word: answer)
         }
         newWord = ""
     }
@@ -88,6 +95,7 @@ struct ContentView: View {
             if let startWords = try? String(contentsOf: startWordURL) {
                 let allWords = startWords.components(separatedBy: "\n")
                 rootWord = allWords.randomElement() ?? "silkworm"
+                currentScore = 0
                 return
             }
         }
@@ -144,6 +152,13 @@ struct ContentView: View {
         errrorMessage = message
         showingError = true
         newWord = ""
+    }
+    
+    func calculateScore(word: String) {
+        let wordCount = word.count
+        let numberOfWords = usedWords.count
+        let score = (wordCount * 5) + (numberOfWords * 10)
+        currentScore += score
     }
 }
 
