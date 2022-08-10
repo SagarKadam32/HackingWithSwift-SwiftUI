@@ -48,7 +48,16 @@ struct ContentView: View {
     
     func addNewWord() {
         let answer = newWord.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        guard answer.count > 0 else {return}
+        guard answer.count > 2  else {
+            wordError(title: "'\(answer)' too short!!", message: "Word should be more than 2 letters")
+            return
+        }
+        
+        guard isWordStaringWithDifferentLetter(word: answer) else {
+            wordError(title: "'\(answer)' having same letter start!", message: "Word should start with different initial letter than original word")
+            
+            return
+        }
         
         guard isOriginal(word: answer) else {
             wordError(title: "'\(answer)' Word used already", message: "Be more original")
@@ -107,6 +116,24 @@ struct ContentView: View {
                                                             , startingAt: 0, wrap: false, language: "en")
         
         return misspelledRange.location == NSNotFound
+    }
+    
+    func isWordStaringWithDifferentLetter(word: String) -> Bool {
+        var rootLetters = [Character]()
+        var tempLetters = [Character]()
+
+        for letter in rootWord {
+            rootLetters.append(letter)
+        }
+        for letter in word {
+            tempLetters.append(letter)
+        }
+        
+        if(rootLetters[0] == tempLetters[0]) {
+            return false
+        }
+        
+        return true
     }
     
     func wordError(title: String, message: String){
