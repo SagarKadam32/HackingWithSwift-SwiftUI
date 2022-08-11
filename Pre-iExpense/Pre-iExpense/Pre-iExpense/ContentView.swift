@@ -8,13 +8,13 @@
 import SwiftUI
 
 
-struct User {
-    var firstName = "Sagar"
-    var lastName = "Kadam"
+class User : ObservableObject{
+    @Published var firstName = "Sagar"
+    @Published var lastName = "Kadam"
 }
 
 struct ContentView: View {
-    @State private var user = User()
+    @StateObject var user = User()
     
     var body: some View {
         
@@ -22,10 +22,18 @@ struct ContentView: View {
         VStack {
             Text("User name is \(user.firstName) \(user.lastName)")
             
-            TextField("First Name", text: $user.firstName)
-            TextField("Last Name", text: $user.lastName)
+            HStack {
+                Text("First Name:")
+                TextField("First Name", text: $user.firstName)
+            }
+            HStack {
+                Text("Last Name:")
+                TextField("Last Name", text: $user.lastName)
+            }
+            
+            Spacer()
 
-        }
+        }.padding()
     }
 }
 
