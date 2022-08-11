@@ -35,44 +35,49 @@ struct ContentView: View {
     
     var body: some View {
         
-        
-        VStack {
-            Text("User name is \(user.firstName) \(user.lastName)")
-            
-            HStack {
-                Text("First Name:")
-                TextField("First Name", text: $user.firstName)
-            }
-            HStack {
-                Text("Last Name:")
-                TextField("Last Name", text: $user.lastName)
-            }
-            Spacer()
-            
-            List {
-                ForEach(numbers, id: \.self) {
-                    Text("Row \($0)")
-                }
-                .onDelete(perform: removeRows)
-            }
-            
-            
-            Button("Add Number") {
-                numbers.append(currentNumber)
-                currentNumber += 1
-            }
-            Spacer()
-            Spacer()
-            
-            Button("Show Sheet") {
-                showingSheet.toggle()
-            }.sheet(isPresented: $showingSheet) {
-                SecondView(name: " \(user.firstName) \(user.lastName)")
-            }
-            
-            Spacer()
+        NavigationView {
+                VStack {
+                    Text("User name is \(user.firstName) \(user.lastName)")
+                    
+                    HStack {
+                        Text("First Name:")
+                        TextField("First Name", text: $user.firstName)
+                    }
+                    HStack {
+                        Text("Last Name:")
+                        TextField("Last Name", text: $user.lastName)
+                    }
+                    Spacer()
+                    
+                    List {
+                        ForEach(numbers, id: \.self) {
+                            Text("Row \($0)")
+                        }
+                        .onDelete(perform: removeRows)
+                    }
+                    
+                    
+                    Button("Add Number") {
+                        numbers.append(currentNumber)
+                        currentNumber += 1
+                    }
+                    Spacer()
+                    Spacer()
+                    
+                    Button("Show Sheet") {
+                        showingSheet.toggle()
+                    }.sheet(isPresented: $showingSheet) {
+                        SecondView(name: " \(user.firstName) \(user.lastName)")
+                    }
+                    
+                    Spacer()
 
-        }.padding()
+                }.padding()
+                .toolbar(){
+                    EditButton()
+                }
+                .navigationTitle("On Delete()")
+        }
     }
     
     func removeRows(at offsets: IndexSet) {
