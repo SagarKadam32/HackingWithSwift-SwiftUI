@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct SecondView: View {
+    var name: String
+    @Environment(\.dismiss) var dismiss
+    
+    var body: some View {
+        VStack {
+            Text("Hello \(name)")
+            
+            Button("Dismiss") {
+                dismiss()
+            }
+        }
+    }
+}
 
 class User : ObservableObject{
     @Published var firstName = "Sagar"
@@ -15,6 +29,7 @@ class User : ObservableObject{
 
 struct ContentView: View {
     @StateObject var user = User()
+    @State private var showingSheet = false
     
     var body: some View {
         
@@ -29,6 +44,12 @@ struct ContentView: View {
             HStack {
                 Text("Last Name:")
                 TextField("Last Name", text: $user.lastName)
+            }
+            
+            Button("Show Sheet") {
+                showingSheet.toggle()
+            }.sheet(isPresented: $showingSheet) {
+                SecondView(name: " \(user.firstName) \(user.lastName)")
             }
             
             Spacer()
