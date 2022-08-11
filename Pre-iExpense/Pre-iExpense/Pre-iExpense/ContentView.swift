@@ -30,6 +30,8 @@ class User : ObservableObject{
 struct ContentView: View {
     @StateObject var user = User()
     @State private var showingSheet = false
+    @State private var numbers = [Int]()
+    @State private var currentNumber = 1
     
     var body: some View {
         
@@ -45,6 +47,22 @@ struct ContentView: View {
                 Text("Last Name:")
                 TextField("Last Name", text: $user.lastName)
             }
+            Spacer()
+            
+            List {
+                ForEach(numbers, id: \.self) {
+                    Text("Row \($0)")
+                }
+                .onDelete(perform: removeRows)
+            }
+            
+            
+            Button("Add Number") {
+                numbers.append(currentNumber)
+                currentNumber += 1
+            }
+            Spacer()
+            Spacer()
             
             Button("Show Sheet") {
                 showingSheet.toggle()
@@ -55,6 +73,10 @@ struct ContentView: View {
             Spacer()
 
         }.padding()
+    }
+    
+    func removeRows(at offsets: IndexSet) {
+        numbers.remove(atOffsets: offsets)
     }
 }
 
