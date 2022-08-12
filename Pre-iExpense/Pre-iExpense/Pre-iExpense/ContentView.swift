@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+struct UserData : Codable {
+    let firstName: String
+    let lastName: String
+}
 
 struct SecondView: View {
     var name: String
@@ -41,6 +45,7 @@ struct ContentView: View {
     @State private var currentNumber = 1
     @State private var tapCountUserDefaults = UserDefaults.standard.integer(forKey: "Tap")
     @AppStorage("tapCount") private var tapCount = 0
+    @State private var userData = UserData(firstName: "Shaurya", lastName: "Kadam")
     
     var body: some View {
         
@@ -77,8 +82,13 @@ struct ContentView: View {
                         UserDefaults.standard.set(self.tapCountUserDefaults, forKey: "Tap")
                     }
                     
-                    Spacer()
-                    Spacer()
+                    Button("Save User") {
+                        let encoder = JSONEncoder()
+                        
+                        if let data = try? encoder.encode(userData) {
+                            UserDefaults.standard.set(data, forKey: "UserData")
+                        }
+                    }
                     
                     Button("Show Sheet") {
                         showingSheet.toggle()
