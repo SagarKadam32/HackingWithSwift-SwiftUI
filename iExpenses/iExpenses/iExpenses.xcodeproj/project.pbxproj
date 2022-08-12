@@ -13,6 +13,7 @@
 		969EC36E28A669D4005079E4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 969EC36D28A669D4005079E4 /* Preview Assets.xcassets */; };
 		969EC37528A669F6005079E4 /* ExpenseItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969EC37428A669F6005079E4 /* ExpenseItem.swift */; };
 		969EC37728A66A2C005079E4 /* Expenses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969EC37628A66A2C005079E4 /* Expenses.swift */; };
+		969EC37928A6736C005079E4 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969EC37828A6736C005079E4 /* AddView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		969EC36D28A669D4005079E4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		969EC37428A669F6005079E4 /* ExpenseItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseItem.swift; sourceTree = "<group>"; };
 		969EC37628A66A2C005079E4 /* Expenses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expenses.swift; sourceTree = "<group>"; };
+		969EC37828A6736C005079E4 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				969EC36828A669D1005079E4 /* ContentView.swift */,
 				969EC37428A669F6005079E4 /* ExpenseItem.swift */,
 				969EC37628A66A2C005079E4 /* Expenses.swift */,
+				969EC37828A6736C005079E4 /* AddView.swift */,
 				969EC36A28A669D4005079E4 /* Assets.xcassets */,
 				969EC36C28A669D4005079E4 /* Preview Content */,
 			);
@@ -145,6 +148,7 @@
 			files = (
 				969EC37728A66A2C005079E4 /* Expenses.swift in Sources */,
 				969EC36928A669D1005079E4 /* ContentView.swift in Sources */,
+				969EC37928A6736C005079E4 /* AddView.swift in Sources */,
 				969EC37528A669F6005079E4 /* ExpenseItem.swift in Sources */,
 				969EC36728A669D1005079E4 /* iExpensesApp.swift in Sources */,
 			);
