@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+struct ExpenseView: View {
+    var expenseItem : ExpenseItem
+    var body: some View {
+        HStack {
+            VStack(alignment: .leading){
+                Text(expenseItem.name)
+                    .font(.headline)
+                Text(expenseItem.type)
+            }
+            Spacer()
+            Text(expenseItem.amount, format: .currency(code:expenseItem.currencyCode))
+        }
+    }
+}
+
 struct ContentView: View {
     @StateObject var expenses = Expenses()
     @State private var showingAddExpense = false
@@ -14,18 +29,23 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             List {
-                ForEach(expenses.items, id: \.id) { item in
-                    HStack {
-                        VStack(alignment: .leading){
-                            Text(item.name)
-                                .font(.headline)
-                            Text(item.type)
+                Section("Personal") {
+                    ForEach(expenses.items, id: \.id) { item in
+                        if(item.type == "Personal") {
+                            ExpenseView(expenseItem: item)
                         }
-                        Spacer()
-                        Text(item.amount, format: .currency(code:item.currencyCode))
-                    }
+                   }
+                    .onDelete(perform: removeItems)
                 }
-                .onDelete(perform: removeItems)
+                
+                Section("Business") {
+                    ForEach(expenses.items, id: \.id) { item in
+                        if(item.type == "Business") {
+                            ExpenseView(expenseItem: item)
+                         }
+                    }
+                    .onDelete(perform: removeItems)
+                }
             }
             .navigationTitle("iExpense")
             .toolbar {

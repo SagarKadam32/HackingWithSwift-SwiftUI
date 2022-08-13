@@ -11,6 +11,7 @@ struct AddView: View {
     @State private var name = ""
     @State private var type = "Personal"
     @State private var amount = 0.0
+    @State private var isSaveDisabled = true
     @State private var userCurrency = "USD" {
         didSet {
             amountCurrency = userCurrency
@@ -68,6 +69,14 @@ struct AddView: View {
                     let item = ExpenseItem(name: name, type: type, amount: amount, currencyCode: userCurrency)
                     expenses.items.append(item)
                     dismiss()
+                }
+                .disabled(isSaveDisabled)
+            }
+            .onAppear {
+                if(name.isEmpty) {
+                    isSaveDisabled = true
+                }else{
+                    isSaveDisabled = false
                 }
             }
         }
