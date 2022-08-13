@@ -22,7 +22,7 @@ struct ContentView: View {
                             Text(item.type)
                         }
                         Spacer()
-                        Text(item.amount, format: .currency(code:"USD"))
+                        Text(item.amount, format: .currency(code:item.currencyCode))
                     }
                 }
                 .onDelete(perform: removeItems)
