@@ -33,6 +33,16 @@ struct CustomText: View {
 
 
 struct ContentView: View {
+    let layout = [
+        GridItem(.fixed(80)),
+        GridItem(.fixed(80)),
+        GridItem(.fixed(80))
+    ]
+    
+    let layoutAdaptive = [
+        GridItem(.adaptive(minimum: 80))
+    ]
+    
     var body: some View {
         
         /*
@@ -74,24 +84,44 @@ struct ContentView: View {
             }.navigationTitle("Swift UI")
         }*/
         
-        Button("Decode JSON") {
-            let input = """
-            {
-                "name": "Sagar Kadam",
-                "address": {
-                    "street": "Tejpal Scheme Road No-2",
-                    "city": "Mumbai"
+        /*
+        VStack {
+            Button("Decode JSON") {
+                let input = """
+                {
+                    "name": "Sagar Kadam",
+                    "address": {
+                        "street": "Tejpal Scheme Road No-2",
+                        "city": "Mumbai"
+                    }
+                }
+                """
+                
+                let data = Data(input.utf8)
+                let decoder = JSONDecoder()
+                if let user = try? decoder.decode(User.self, from: data){
+                    print(user.address.street)
                 }
             }
-            """
+        } */
+        
+        
+        ScrollView {
             
-            let data = Data(input.utf8)
-            let decoder = JSONDecoder()
-            if let user = try? decoder.decode(User.self, from: data){
-                print(user.address.street)
+            /*
+            LazyVGrid(columns: layout) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
+                }
+            }*/
+            
+            
+            LazyVGrid(columns: layoutAdaptive) {
+                ForEach(0..<1000) {
+                    Text("Item \($0)")
+                }
             }
         }
-        
     }
 }
 
