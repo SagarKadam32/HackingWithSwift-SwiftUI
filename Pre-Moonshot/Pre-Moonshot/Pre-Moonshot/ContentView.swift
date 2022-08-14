@@ -23,6 +23,8 @@ struct CustomText: View {
 
 struct ContentView: View {
     var body: some View {
+        
+        /*
         ScrollView(){
             LazyVStack(spacing: 10) {
                 /*
@@ -35,6 +37,7 @@ struct ContentView: View {
                         )
                 }*/
                 
+               
                 ForEach(0..<100) {
                     /*
                     Text("Item \($0)")
@@ -43,9 +46,22 @@ struct ContentView: View {
                     CustomText("Item \($0)")
                         .font(.title)
                 }
+                
+                
             }
             .frame(maxWidth: .infinity)
+        } */
+        
+        NavigationView {
+            List(0..<100) { row in
+                NavigationLink {
+                    Text("Detail \(row)")
+                } label: {
+                    Text("Row \(row)")
+                }
+            }.navigationTitle("Swift UI")
         }
+        
     }
 }
 
