@@ -30,31 +30,17 @@ struct MissionView: View {
                     VStack(alignment: .leading) {
                         
                         HStack {
-                            Text("Mission Launch Date: ")
+                            TitleHeaderView(headerTitle: "Mission Launch Date: ", headerFont: .title.bold())
                             Text(mission.formattedLaunchDate)
                         }
                         .padding(.top, 5)
 
-          
-                        Rectangle()
-                            .frame(height:2)
-                            .foregroundColor(.lightBackground)
-                            .padding(.vertical)
-                        
-                        Text("Mission Highlights")
-                            .font(.title.bold())
-                            .padding(.bottom, 5)
-                        
+                        CustomSeparatorView()
+                        TitleHeaderView(headerTitle: "Mission Highlights", headerFont: .title.bold())
                         Text(mission.description)
                         
-                        Rectangle()
-                            .frame(height:2)
-                            .foregroundColor(.lightBackground)
-                            .padding(.vertical)
-                        
-                        Text("Crew")
-                            .font(.title.bold())
-                            .padding(.bottom, 5)
+                        CustomSeparatorView()
+                        TitleHeaderView(headerTitle: "Crew", headerFont: .title.bold())
                     }
                     .padding(.horizontal)
                     
