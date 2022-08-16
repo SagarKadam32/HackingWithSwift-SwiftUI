@@ -60,15 +60,21 @@ struct GridLayout: View {
 struct ListLayout: View {
     var astronauts: [String:Astronaut]
     var missions: [Mission]
-    
+
     var body: some View {
-        List(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
-                    MissionLink(mission: mission)
+            VStack {
+                List{
+                    ForEach(missions) { mission in
+                           NavigationLink {
+                                MissionView(mission: mission, astronauts: astronauts)
+                            } label: {
+                                MissionLink(mission: mission)
+                            }
+                        }
                 }
-        }.listStyle(.plain)
+               .listStyle(.plain)
+               .listRowBackground(Color.lightBackground)
+            }
     }
 }
 
@@ -79,22 +85,24 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            ScrollView {
-                Group {
-                    if showingGrid {
-                        GridLayout(astronauts: astronauts, missions: missions)
-                    }else {
-                        ListLayout(astronauts: astronauts, missions: missions)
+            GeometryReader { geometry in
+                ScrollView {
+                    Group {
+                        if showingGrid {
+                            GridLayout(astronauts: astronauts, missions: missions)
+                        }else {
+                            ListLayout(astronauts: astronauts, missions: missions)
+                                .frame(height: geometry.size.height)
+                        }
                     }
                 }
-
-            }
-            .navigationTitle("Moonshot")
-            .background(.darkBackground)
-            .preferredColorScheme(.dark)
-            .toolbar {
-                Button("Switch View") {
-                    showingGrid.toggle()
+                .navigationTitle("Moonshot")
+                .background(.darkBackground)
+                .preferredColorScheme(.dark)
+                .toolbar {
+                    Button("Switch View") {
+                        showingGrid.toggle()
+                    }
                 }
             }
         }
