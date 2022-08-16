@@ -28,7 +28,14 @@ struct MissionView: View {
                         .padding(.top)
                     
                     VStack(alignment: .leading) {
+                        
+                        HStack {
+                            Text("Mission Launch Date: ")
+                            Text(mission.formattedLaunchDate)
+                        }
+                        .padding(.top, 5)
 
+          
                         Rectangle()
                             .frame(height:2)
                             .foregroundColor(.lightBackground)
