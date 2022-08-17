@@ -26,6 +26,8 @@ class User: ObservableObject, Codable {
 }
 
 struct ContentView: View {
+    @State private var userName = ""
+    @State private var email = ""
     var body: some View {
 //        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"))
 //        AsyncImage(url: URL(string: "https://hws.dev/img/logo.png"),scale: 3)
@@ -42,6 +44,7 @@ struct ContentView: View {
         .frame(width: 200, height: 200)
         */
         
+        /*
         AsyncImage(url: URL(string: "https://hws.dev/img/logo.png")) { phase in
             if let image = phase.image {
                 image
@@ -54,7 +57,25 @@ struct ContentView: View {
             }
         }
         .frame(width:200, height: 200)
+         */
         
+        Form {
+            Section {
+                TextField("Username", text: $userName)
+                TextField("Email", text: $email)
+            }
+            
+            Section {
+                Button("Create Account") {
+                    print("Creating account....")
+                }
+            }
+            .disabled(isFormDisabled)
+        }
+    }
+    
+    var isFormDisabled: Bool {
+        userName.count < 5 || email.count < 5
     }
 }
 
