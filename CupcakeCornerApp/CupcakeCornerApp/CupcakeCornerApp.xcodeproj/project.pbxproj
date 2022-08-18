@@ -59,11 +59,11 @@
 			children = (
 				9690A37E28ACB5C100636804 /* CupcakeCornerAppApp.swift */,
 				966584BB28AD610300AC4160 /* Order.swift */,
+				966584BD28AD63CB00AC4160 /* AddressView.swift */,
+				966584BF28AD668400AC4160 /* CheckoutView.swift */,
 				9690A38028ACB5C100636804 /* ContentView.swift */,
 				9690A38228ACB5C300636804 /* Assets.xcassets */,
 				9690A38428ACB5C300636804 /* Preview Content */,
-				966584BD28AD63CB00AC4160 /* AddressView.swift */,
-				966584BF28AD668400AC4160 /* CheckoutView.swift */,
 			);
 			path = CupcakeCornerApp;
 			sourceTree = "<group>";
