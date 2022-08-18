@@ -36,8 +36,14 @@ class Order: ObservableObject, Codable {
     var hasValidAddress: Bool {
         if name.isEmpty || streetAddress.isEmpty || city.isEmpty || zip.isEmpty {
             return false
+        }else if (name.trimmingCharacters(in: .whitespaces).count > 0 &&
+                  streetAddress.trimmingCharacters(in: .whitespaces).count > 0 &&
+                  city.trimmingCharacters(in: .whitespaces).count > 0 &&
+                  zip.trimmingCharacters(in: .whitespaces).count > 0) {
+            return true
+            
         }
-        return true
+        return false
     }
     
     var cost: Double {
