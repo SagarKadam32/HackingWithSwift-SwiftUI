@@ -15,6 +15,7 @@
 		961357DC28B5C481003577BD /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961357DB28B5C481003577BD /* DataController.swift */; };
 		961357DE28B5C8A6003577BD /* AddBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961357DD28B5C8A6003577BD /* AddBookView.swift */; };
 		961357E028B5D1BC003577BD /* RatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961357DF28B5D1BC003577BD /* RatingView.swift */; };
+		961357E228B5D64C003577BD /* EmojiRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 961357E128B5D64C003577BD /* EmojiRatingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		961357DB28B5C481003577BD /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		961357DD28B5C8A6003577BD /* AddBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBookView.swift; sourceTree = "<group>"; };
 		961357DF28B5D1BC003577BD /* RatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingView.swift; sourceTree = "<group>"; };
+		961357E128B5D64C003577BD /* EmojiRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiRatingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				961357CC28B5C436003577BD /* ContentView.swift */,
 				961357DD28B5C8A6003577BD /* AddBookView.swift */,
 				961357DF28B5D1BC003577BD /* RatingView.swift */,
+				961357E128B5D64C003577BD /* EmojiRatingView.swift */,
 				961357DB28B5C481003577BD /* DataController.swift */,
 				961357D828B5C46E003577BD /* Bookwarm.xcdatamodeld */,
 				961357CE28B5C438003577BD /* Assets.xcassets */,
@@ -151,6 +154,7 @@
 			files = (
 				961357DA28B5C46E003577BD /* Bookwarm.xcdatamodeld in Sources */,
 				961357DC28B5C481003577BD /* DataController.swift in Sources */,
+				961357E228B5D64C003577BD /* EmojiRatingView.swift in Sources */,
 				961357CD28B5C436003577BD /* ContentView.swift in Sources */,
 				961357E028B5D1BC003577BD /* RatingView.swift in Sources */,
 				961357CB28B5C436003577BD /* BookwormApp.swift in Sources */,
