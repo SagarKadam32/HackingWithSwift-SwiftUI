@@ -28,12 +28,48 @@ struct PushButton: View {
 
 struct ContentView: View {
     @State private var rememberMe = false
+    @AppStorage("notes") private var notes = ""
+    @FetchRequest(sortDescriptors: []) var students: FetchedResults<Student>
+    @Environment(\.managedObjectContext) var moc
     
     var body: some View {
-        VStack {
-            PushButton(title: "Remember Me", isOn: $rememberMe)
-            Text(rememberMe ? "On" : "Off")
+        /*
+         VStack {
+             PushButton(title: "Remember Me", isOn: $rememberMe)
+             Text(rememberMe ? "On" : "Off")
+             
+         }
+         */
+        /*
+        NavigationView {
+            TextEditor(text: $notes)
+                .navigationTitle("Notes")
+                .padding()
         }
+        */
+        
+        VStack {
+            List(students) { student in
+                Text(student.name ?? "Unknown")
+            }
+
+            Button("Add") {
+                let firstNames = ["Ginny", "Harry", "Hermione", "Luna", "Ron"]
+                let lastNames = ["Granger", "Lovegood", "Potter", "Weasley"]
+                
+                let chosenFirstName = firstNames.randomElement() ?? "Tom"
+                let chosenLastName = lastNames.randomElement() ?? "Hanks"
+                
+                let student = Student(context: moc)
+                student.id = UUID()
+                student.name = "\(chosenFirstName) \(chosenLastName)"
+                
+                try? moc.save()
+            }
+
+        }
+        
+
     }
 }
 
