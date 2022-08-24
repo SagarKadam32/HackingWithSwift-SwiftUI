@@ -16,6 +16,7 @@ struct AddBookView: View {
     @State private var rating = 3
     @State private var genre = ""
     @State private var review = ""
+    @State private var shouldSaveEnabled = false
     
     let genres = ["Fantasy", "Horror", "Kids","Mystery", "Poetry", "Romance", "Thriller"]
     
@@ -62,12 +63,22 @@ struct AddBookView: View {
                         dismiss()
                         
                     }
+                    .disabled(inputsValidated() == false)
                 }
             }
             .navigationTitle("Add Book")
         }
-
-
+    }
+    
+    private func inputsValidated() -> Bool{
+        if title.isEmpty || author.isEmpty || genre.isEmpty {
+            return false
+        }else if (title.trimmingCharacters(in: .whitespaces).count > 0 &&
+                  author.trimmingCharacters(in: .whitespaces).count > 0 &&
+                  genre.trimmingCharacters(in: .whitespaces).count > 0)  {
+            return true
+        }
+        return true
     }
 }
 
