@@ -43,6 +43,11 @@ struct DetailView: View {
             
             RatingView(rating: .constant(Int(book.rating)))
                 .font(.largeTitle)
+            
+            Text(getFormattedBookDate() ?? "")
+                .padding()
+            
+            
         }
         .navigationTitle(book.title ?? "Unknown Book")
         .navigationBarTitleDisplayMode(.inline)
@@ -67,6 +72,11 @@ struct DetailView: View {
         try? moc.save()
         dismiss()
     }
+    
+    func getFormattedBookDate() -> String? {
+        return book.bookDate?.formatted(date: .abbreviated, time: .shortened) ?? "N/A"
+    }
+  
 }
 
 /*
