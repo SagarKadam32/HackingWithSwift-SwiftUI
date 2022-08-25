@@ -60,9 +60,10 @@ struct AddBookView: View {
                         newBook.review = review
                         newBook.bookDate = Date.now
                         
-                        try? moc.save()
-                        dismiss()
-                        
+                        if moc.hasChanges {
+                            try? moc.save()
+                            dismiss()
+                        }
                     }
                     .disabled(inputsValidated() == false)
                 }
