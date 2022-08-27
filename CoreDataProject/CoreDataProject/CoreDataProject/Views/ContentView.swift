@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var lastNameFilter = "A"
     
     @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
+    @State private var isAddExamplesButtonDisabled = false
 
     
     var body: some View {
@@ -199,8 +200,10 @@ struct ContentView: View {
                 candy5.origin?.fullName = "Switzerland"
                 
                 try? moc.save()
+                isAddExamplesButtonDisabled = true
                 
             }
+            .disabled(isAddExamplesButtonDisabled)
         }
         
         
