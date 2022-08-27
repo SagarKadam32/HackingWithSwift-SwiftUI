@@ -104,9 +104,9 @@ struct ContentView: View {
             } */
         
         /* Dynamically filtering @FetchRequest with SwiftUI */
-        /*
+        
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: "%K BEGINSWITH %@") { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
             
@@ -141,10 +141,10 @@ struct ContentView: View {
             Button("Show S") {
                 lastNameFilter = "S"
             }
-        } */
+        }
         
         /* One-to-many relationships with Core Data, SwiftUI, and @FetchRequest */
-        
+        /*
         VStack {
             List {
                 ForEach(countries, id: \.self) { country in
@@ -205,7 +205,7 @@ struct ContentView: View {
             }
             .disabled(isAddExamplesButtonDisabled)
         }
-        
+        */
         
         
         
