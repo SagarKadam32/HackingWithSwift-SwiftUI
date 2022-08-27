@@ -20,6 +20,9 @@ struct ContentView: View {
     
     @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
     @State private var isAddExamplesButtonDisabled = false
+    
+    @State var sortDescriptor: NSSortDescriptor = NSSortDescriptor(keyPath: \Singer.firstName, ascending: true)
+
 
     enum PredicateType {
         case beginsWith
@@ -121,7 +124,7 @@ struct ContentView: View {
         /* Dynamically filtering @FetchRequest with SwiftUI */
         
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: getPredicate(predicate: .beginsWith)) { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: getPredicate(predicate: .beginsWith), sortDescriptor: sortDescriptor) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
             
@@ -145,6 +148,16 @@ struct ContentView: View {
                 let kumar = Singer(context: moc)
                 kumar.firstName = "Kumar"
                 kumar.lastName = "Sanu"
+                
+                let akshay = Singer(context: moc)
+                akshay.firstName = "Akshay"
+                akshay.lastName = "Sanu"
+                
+                
+                let bobby = Singer(context: moc)
+                bobby.firstName = "Bobby"
+                bobby.lastName = "Sahu"
+                
                 
                 try? moc.save()
             }

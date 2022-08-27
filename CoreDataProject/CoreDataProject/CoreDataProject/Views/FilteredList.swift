@@ -18,8 +18,13 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         }
     }
     
-    init(filterKey: String, filterValue: String, predicate: String, @ViewBuilder content: @escaping(T) -> Content) {
-        _fetchedRequest = FetchRequest<T>(sortDescriptors: [], predicate: NSPredicate(format: predicate, filterKey,filterValue))
+    init(filterKey: String, filterValue: String, predicate: String, sortDescriptor: NSSortDescriptor, @ViewBuilder content: @escaping(T) -> Content) {
+        
+        _fetchedRequest = FetchRequest<T>(sortDescriptors: [sortDescriptor], predicate: NSPredicate(format: predicate, filterKey,filterValue))
         self.content = content
     }
 }
+
+
+
+// Ref - https://www.hackingwithswift.com/forums/100-days-of-swiftui/day-59-generic-filteredlist-in-core-data/8902
