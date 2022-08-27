@@ -103,7 +103,9 @@ struct ContentView: View {
         /* Dynamically filtering @FetchRequest with SwiftUI */
         
         VStack {
-            FilteredList(filter: lastNameFilter)
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
+                Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
+            }
             
             Button("Add Examples") {
                 let taylor = Singer(context: moc)

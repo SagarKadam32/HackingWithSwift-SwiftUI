@@ -17,6 +17,11 @@
     <entity name="Singer" representedClassName="Singer" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String"/>
         <attribute name="lastName" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="firstName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="Wizard" representedClassName="Wizard" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
