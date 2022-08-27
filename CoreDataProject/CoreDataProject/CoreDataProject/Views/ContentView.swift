@@ -21,6 +21,21 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
     @State private var isAddExamplesButtonDisabled = false
 
+    enum PredicateType {
+        case beginsWith
+        case endsWith
+        
+    }
+    
+    func getPredicate(predicate : PredicateType) -> String {
+        switch(predicate) {
+        case .beginsWith:
+            return "%K BEGINSWITH %@"
+   
+        case .endsWith:
+            return "%K ENDSSWITH %@"
+        }
+    }
     
     var body: some View {
         
@@ -106,7 +121,7 @@ struct ContentView: View {
         /* Dynamically filtering @FetchRequest with SwiftUI */
         
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: "%K BEGINSWITH %@") { (singer: Singer) in
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter, predicate: getPredicate(predicate: .beginsWith)) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
             }
             
