@@ -17,6 +17,8 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "name BEGINSWITH[c] %@", "e")) var shipNamesStartswithE: FetchedResults<Ship>
     
     @State private var lastNameFilter = "A"
+    
+    @FetchRequest(sortDescriptors: []) var countries: FetchedResults<Country>
 
     
     var body: some View {
@@ -101,7 +103,7 @@ struct ContentView: View {
             } */
         
         /* Dynamically filtering @FetchRequest with SwiftUI */
-        
+        /*
         VStack {
             FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
                 Text("\(singer.wrappedFirstName) \(singer.wrappedLastName)")
@@ -138,7 +140,70 @@ struct ContentView: View {
             Button("Show S") {
                 lastNameFilter = "S"
             }
+        } */
+        
+        /* One-to-many relationships with Core Data, SwiftUI, and @FetchRequest */
+        
+        VStack {
+            List {
+                ForEach(countries, id: \.self) { country in
+                    Section(country.wrappedFullName) {
+                        ForEach(country.candyArray, id: \.self) { candy in
+                            Text(candy.wrappedName)
+                                .onAppear {
+                                    print("Candy Name \(candy.name)")
+                                }
+                        }
+                    }
+                    .onAppear {
+                        print("Country Name \(country.fullName)")
+                    }
+                    
+                }
+            }
+            
+            
+            Button("Add Examples") {
+                
+                let candy1 = Candy(context: moc)
+                candy1.name = "Mars"
+                candy1.origin = Country(context: moc)
+                candy1.origin?.shortName = "UK"
+                candy1.origin?.fullName = "United Kingdom"
+                
+                let candy2 = Candy(context: moc)
+                candy2.name = "Daily Milk"
+                candy2.origin = Country(context: moc)
+                candy2.origin?.shortName = "IND"
+                candy2.origin?.fullName = "India"
+                
+                
+                let candy3 = Candy(context: moc)
+                candy3.name = "Sneakers"
+                candy3.origin = Country(context: moc)
+                candy3.origin?.shortName = "US"
+                candy3.origin?.fullName = "United States"
+                
+                
+                let candy4 = Candy(context: moc)
+                candy4.name = "KissMe"
+                candy4.origin = Country(context: moc)
+                candy4.origin?.shortName = "IND"
+                candy4.origin?.fullName = "India"
+                
+                
+                let candy5 = Candy(context: moc)
+                candy5.name = "GoldBars"
+                candy5.origin = Country(context: moc)
+                candy5.origin?.shortName = "CH"
+                candy5.origin?.fullName = "Switzerland"
+                
+                try? moc.save()
+                
+            }
         }
+        
+        
         
         
     }
