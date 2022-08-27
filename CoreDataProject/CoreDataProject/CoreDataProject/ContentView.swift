@@ -15,6 +15,8 @@ struct ContentView: View {
     @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "universe == 'Star Wars'")) var starWarsUniverseShips: FetchedResults<Ship>
     
     @FetchRequest(sortDescriptors: [], predicate: NSPredicate(format: "name BEGINSWITH[c] %@", "e")) var shipNamesStartswithE: FetchedResults<Ship>
+    
+    @State private var lastNameFilter = "A"
 
     
     var body: some View {
@@ -43,6 +45,7 @@ struct ContentView: View {
         } */
         
         /* Filtering @FetchRequest using NSPredicate */
+        /*
             VStack {
                 Form {
                     Section("Original Data") {
@@ -73,8 +76,6 @@ struct ContentView: View {
                 
                 }
                 
-
-                
                 Button("Add Examples") {
                     
                     let ship1 = Ship(context: moc)
@@ -97,7 +98,47 @@ struct ContentView: View {
                         try? moc.save()
                     }
                 }
+            } */
+        
+        /* Dynamically filtering @FetchRequest with SwiftUI */
+        
+        VStack {
+            FilteredList(filter: lastNameFilter)
+            
+            Button("Add Examples") {
+                let taylor = Singer(context: moc)
+                taylor.firstName = "Taylor"
+                taylor.lastName = "Swift"
+                
+                let ed = Singer(context: moc)
+                ed.firstName = "Ed"
+                ed.lastName = "Sherene"
+                
+                let adele = Singer(context: moc)
+                adele.firstName = "Adele"
+                adele.lastName = "Adkins"
+                
+                let sagar = Singer(context: moc)
+                sagar.firstName = "Sagar"
+                sagar.lastName = "Kadam "
+                
+                let kumar = Singer(context: moc)
+                kumar.firstName = "Kumar"
+                kumar.lastName = "Sanu"
+                
+                try? moc.save()
             }
+            
+            Button("Show A") {
+                lastNameFilter = "A"
+            }
+            
+            Button("Show S") {
+                lastNameFilter = "S"
+            }
+        }
+        
+        
     }
 }
 
