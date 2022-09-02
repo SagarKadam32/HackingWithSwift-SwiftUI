@@ -34,16 +34,35 @@ struct ContentView: View {
     
     var body: some View {
         VStack{
+            
+            /*
             List(values, id: \.self) {
                 Text(String($0))
             }
             
             List(users) { user in
                 Text("\(user.lastName), \(user.firstName)")
-            }
+            } */
+            
+            Text("Hello World")
+                .onTapGesture {
+                    let str = "Test Message"
+                    let url = getDocumentDirectory().appendingPathComponent("Message.txt")
+                    
+                    do {
+                        try str.write(to: url, atomically: true, encoding: .utf8)
+                        let input = try String(contentsOf: url)
+                        print(input)
+                    } catch {
+                        print(error.localizedDescription)
+                    }
+                }
         }
-
-        
+    }
+    
+    func getDocumentDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
 }
 
