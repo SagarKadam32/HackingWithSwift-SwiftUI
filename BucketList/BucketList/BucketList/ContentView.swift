@@ -9,8 +9,8 @@ import MapKit
 import SwiftUI
 
 struct Location: Identifiable, Codable, Equatable {
-    let id: UUID
-    let name: String
+    var id: UUID
+    var name: String
     var description: String
     var latitude: Double
     var longitude: Double
@@ -79,10 +79,12 @@ struct ContentView: View {
             }
         }
         .sheet(item: $selectedPlace) { place in
-            Text(place.name)
+            EditView(location: place) { newLocation in
+                if let index = locations.firstIndex(of: place) {
+                    locations[index] = newLocation
+                }
+            }
         }
-        
-        
     }
 }
 

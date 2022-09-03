@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		968D339D28C3183D0018090D /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968D339C28C3183D0018090D /* EditView.swift */; };
 		969C418828C2170600C56E30 /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C418728C2170600C56E30 /* BucketListApp.swift */; };
 		969C418A28C2170600C56E30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C418928C2170600C56E30 /* ContentView.swift */; };
 		969C418C28C2170A00C56E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 969C418B28C2170A00C56E30 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		968D339C28C3183D0018090D /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
 		969C418428C2170600C56E30 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		969C418728C2170600C56E30 /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		969C418928C2170600C56E30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -55,6 +57,7 @@
 				969C418928C2170600C56E30 /* ContentView.swift */,
 				969C418B28C2170A00C56E30 /* Assets.xcassets */,
 				969C418D28C2170A00C56E30 /* Preview Content */,
+				968D339C28C3183D0018090D /* EditView.swift */,
 			);
 			path = BucketList;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			files = (
 				969C418A28C2170600C56E30 /* ContentView.swift in Sources */,
 				969C418828C2170600C56E30 /* BucketListApp.swift in Sources */,
+				968D339D28C3183D0018090D /* EditView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
