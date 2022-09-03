@@ -15,6 +15,7 @@
 		969C418A28C2170600C56E30 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 969C418928C2170600C56E30 /* ContentView.swift */; };
 		969C418C28C2170A00C56E30 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 969C418B28C2170A00C56E30 /* Assets.xcassets */; };
 		969C418F28C2170A00C56E30 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 969C418E28C2170A00C56E30 /* Preview Assets.xcassets */; };
+		96B706D128C3765B009C2E05 /* EditView-ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96B706D028C3765B009C2E05 /* EditView-ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		969C418928C2170600C56E30 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		969C418B28C2170A00C56E30 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		969C418E28C2170A00C56E30 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		96B706D028C3765B009C2E05 /* EditView-ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditView-ViewModel.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,10 +62,11 @@
 			isa = PBXGroup;
 			children = (
 				969C418728C2170600C56E30 /* BucketListApp.swift */,
+				968D33A228C33F910018090D /* FileManager-DocumentsDirectory.swift */,
 				969C418928C2170600C56E30 /* ContentView.swift */,
 				968D33A028C339700018090D /* ContentView-ViewModel.swift */,
-				968D33A228C33F910018090D /* FileManager-DocumentsDirectory.swift */,
 				968D339C28C3183D0018090D /* EditView.swift */,
+				96B706D028C3765B009C2E05 /* EditView-ViewModel.swift */,
 				968D339E28C31FA60018090D /* Result.swift */,
 				969C418B28C2170A00C56E30 /* Assets.xcassets */,
 				969C418D28C2170A00C56E30 /* Preview Content */,
@@ -152,6 +155,7 @@
 				968D33A328C33F910018090D /* FileManager-DocumentsDirectory.swift in Sources */,
 				969C418A28C2170600C56E30 /* ContentView.swift in Sources */,
 				969C418828C2170600C56E30 /* BucketListApp.swift in Sources */,
+				96B706D128C3765B009C2E05 /* EditView-ViewModel.swift in Sources */,
 				968D33A128C339700018090D /* ContentView-ViewModel.swift in Sources */,
 				968D339F28C31FA60018090D /* Result.swift in Sources */,
 				968D339D28C3183D0018090D /* EditView.swift in Sources */,
