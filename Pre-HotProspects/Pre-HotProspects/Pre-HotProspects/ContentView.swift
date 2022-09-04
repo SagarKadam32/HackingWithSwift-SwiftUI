@@ -47,6 +47,7 @@ struct ContentView: View {
     @StateObject private var user = User()
     @State private var selectedTab = "One"
     @StateObject var updater = DelayedUpdater()
+    @State private var output = ""
     
     var body: some View {
         /* Reading custom values from the environment with @EnvironmentObject */
@@ -81,8 +82,24 @@ struct ContentView: View {
         } */
         
         /* Manually publishing ObservableObject changes */
-        Text("Value is: \(updater.value)")
+        /* Text("Value is: \(updater.value)") */
         
+        /* Understanding Swift’s Result type */
+        Text(output)
+            .task {
+                await fetchReadings()
+            }
+    }
+    
+    func fetchReadings() async {
+        do {
+            let url = URL(string: "https://hws.dev/readings.json")!
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let readings = try JSONDecoder().decode([Double].self, from: data)
+            output = "Found \(readings.count) readings"
+        } catch {
+            print("Download error")
+        }
     }
 }
 
