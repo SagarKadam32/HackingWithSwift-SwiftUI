@@ -8,7 +8,11 @@
 import SwiftUI
 
 @MainActor class DelayedUpdater: ObservableObject {
-    @Published var value = 0
+    var value = 0 {
+        willSet {
+            objectWillChange.send()
+        }
+    }
     
     init() {
         for i in 1...10 {
