@@ -126,11 +126,10 @@ struct ContentView: View {
                         backgroundColor = .red
                     } */
                     
-                    Button {
+                    Button(role: .destructive) {
                         backgroundColor = .red
                     } label: {
                         Label("Red", systemImage: "checkmark.circle.fill")
-                            .foregroundColor(.red)
                     }
                     
                     Button("Green") {
