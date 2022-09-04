@@ -112,7 +112,7 @@ struct ContentView: View {
          */
         
         /* Creating context menus */
-        
+        /*
         VStack {
             Text("Hello, World!")
                 .padding()
@@ -139,6 +139,28 @@ struct ContentView: View {
                     Button("Blue") {
                         backgroundColor = .blue
                     }
+                }
+        } */
+        
+        
+        /* Adding custom row swipe actions to a List */
+        List {
+            Text("Sagar Kadam")
+                .swipeActions {
+                    Button {
+                        print("Right Side Swipe")
+                    } label : {
+                        Label("Send message", systemImage: "message" )
+                    }
+                    .tint(.blue)
+                }
+                .swipeActions(edge: .leading) {
+                    Button {
+                        print("Left Side Swipe")
+                    } label: {
+                        Label("Pin", systemImage: "pin")
+                    }
+                    .tint(.orange)
                 }
         }
     }
