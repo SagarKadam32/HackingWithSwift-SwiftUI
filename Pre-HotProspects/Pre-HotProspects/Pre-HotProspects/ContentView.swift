@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+@MainActor class DelayedUpdater: ObservableObject {
+    @Published var value = 0
+    
+    init() {
+        for i in 1...10 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(i)) {
+                self.value += 1
+            }
+        }
+    }
+}
+
 @MainActor class User: ObservableObject {
     @Published var name = "Sagar Kadam"
 }
@@ -30,6 +42,7 @@ struct DisplayView: View {
 struct ContentView: View {
     @StateObject private var user = User()
     @State private var selectedTab = "One"
+    @StateObject var updater = DelayedUpdater()
     
     var body: some View {
         /* Reading custom values from the environment with @EnvironmentObject */
@@ -43,6 +56,7 @@ struct ContentView: View {
          */
         
         /* Creating tabs with TabView and tabItem() */
+        /*
         TabView(selection: $selectedTab) {
             Text("Tab 1")
                 .tabItem{
@@ -60,7 +74,11 @@ struct ContentView: View {
                     selectedTab = "One"
                 }
                 .tag("Two")
-        }
+        } */
+        
+        /* Manually publishing ObservableObject changes */
+        Text("Value is: \(updater.value)")
+        
     }
 }
 
