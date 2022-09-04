@@ -47,7 +47,9 @@ struct ContentView: View {
     @StateObject private var user = User()
     @State private var selectedTab = "One"
     @StateObject var updater = DelayedUpdater()
-    @State private var output = ""
+    @State private var output1 = ""
+    @State private var output2 = ""
+
     
     var body: some View {
         /* Reading custom values from the environment with @EnvironmentObject */
@@ -85,9 +87,14 @@ struct ContentView: View {
         /* Text("Value is: \(updater.value)") */
         
         /* Understanding Swift’s Result type */
-        Text(output)
+        Text(output1)
             .task {
                 await fetchReadings()
+            }
+        
+        Text(output2)
+            .task {
+                await fetchTaskReadings()
             }
     }
     
@@ -96,9 +103,33 @@ struct ContentView: View {
             let url = URL(string: "https://hws.dev/readings.json")!
             let (data, _) = try await URLSession.shared.data(from: url)
             let readings = try JSONDecoder().decode([Double].self, from: data)
-            output = "Found \(readings.count) readings"
+            output1 = "Found \(readings.count) readings"
         } catch {
             print("Download error")
+        }
+    }
+    
+    func fetchTaskReadings() async {
+        let fetchTask = Task { () -> String in
+            let url = URL(string: "https://hws.dev/readings.json")!
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let readings = try JSONDecoder().decode([Double].self, from: data)
+            return "Found \(readings.count) readings"
+        }
+        let result = await fetchTask.result
+        
+        /*
+        do {
+            output2 = try result.get()
+        }catch {
+            output2 = "Error: \(error.localizedDescription)"
+        }*/
+        
+        switch result {
+        case .success(let str):
+            output2 = str
+        case .failure(let error):
+            output2 = "Error: \(error.localizedDescription)"
         }
     }
 }
