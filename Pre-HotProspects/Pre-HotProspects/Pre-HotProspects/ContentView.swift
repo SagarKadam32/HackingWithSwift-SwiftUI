@@ -87,6 +87,7 @@ struct ContentView: View {
         /* Text("Value is: \(updater.value)") */
         
         /* Understanding Swift’s Result type */
+        /*
         Text(output1)
             .task {
                 await fetchReadings()
@@ -96,6 +97,16 @@ struct ContentView: View {
             .task {
                 await fetchTaskReadings()
             }
+         */
+        
+        /* Controlling image interpolation in SwiftUI */
+        Image("example")
+            .resizable()
+            .scaledToFit()
+            .frame(maxHeight: .infinity)
+            .background(.black)
+            .ignoresSafeArea()
+        
     }
     
     func fetchReadings() async {
