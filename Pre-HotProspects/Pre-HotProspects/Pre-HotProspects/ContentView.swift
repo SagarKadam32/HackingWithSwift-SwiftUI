@@ -49,6 +49,7 @@ struct ContentView: View {
     @StateObject var updater = DelayedUpdater()
     @State private var output1 = ""
     @State private var output2 = ""
+    @State private var backgroundColor = Color.red
 
     
     var body: some View {
@@ -100,6 +101,7 @@ struct ContentView: View {
          */
         
         /* Controlling image interpolation in SwiftUI */
+        /*
         Image("example")
             .interpolation(.none)
             .resizable()
@@ -107,7 +109,31 @@ struct ContentView: View {
             .frame(maxHeight: .infinity)
             .background(.black)
             .ignoresSafeArea()
+         */
         
+        /* Creating context menus */
+        
+        VStack {
+            Text("Hello, World!")
+                .padding()
+                .background(backgroundColor)
+            
+            Text("Change Color")
+                .padding()
+                .contextMenu {
+                    Button("Red") {
+                        backgroundColor = .red
+                    }
+                    
+                    Button("Green") {
+                        backgroundColor = .green
+                    }
+                    
+                    Button("Blue") {
+                        backgroundColor = .blue
+                    }
+                }
+        }
     }
     
     func fetchReadings() async {
