@@ -101,6 +101,7 @@ struct ContentView: View {
         
         /* Controlling image interpolation in SwiftUI */
         Image("example")
+            .interpolation(.none)
             .resizable()
             .scaledToFit()
             .frame(maxHeight: .infinity)
